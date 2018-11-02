@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.smbms.dao.record.RecordMapper">
+
+	<!-- 查询供应商表记录数 -->
+	<select id="count" resultType="int">
+		select count(1) as count from record
+	</select>
+	
+	<!-- 查询出厂日期在2015年以后的设备列表 -->
+	<select id="selectRecordsAfter2015" resultType="Record">
+		select * from record where Year(manufactureDate) > 2015
+	</select>
+	
+</mapper>
