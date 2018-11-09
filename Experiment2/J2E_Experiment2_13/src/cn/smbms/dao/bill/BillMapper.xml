@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.smbms.dao.bill.BillMapper">
+
+	<!-- 根据角色id获取用户列表 -->
+	<select id="getBillListByProviderId" resultMap="billProviderResult">
+		select b.*,p.id as p_id,p.proCode,p.proName,p.proContact,p.proPhone
+			from smbms_bill b,smbms_provider p
+			where b.productName like CONCAT ('%',#{productName},'%')
+				and b.providerId=#{providerId}
+				and b.isPayment=#{isPayment}
+				and b.providerId=p.id
+	</select>
+	
+	<resultMap type="Bill" id="billProviderResult">
+		<id property="id" column="id"/>
+		<result property="billCode" column="billCode"/>
+		<result property="productName" column="productName"/>
+		<result property="totalPrice" column="totalPrice"/>
+		<result property="isPayment" column="isPayment"/>
+		<association property="provider" javaType="Provider" resultMap="providerResult"/>
+	</resultMap>
+	
+	<resultMap type="Provider" id="providerResult">
+		<id property="id" column="p_id"/>
+		<result property="proCode" column="proCode"/>
+		<result property="proName" column="proName"/>
+		<result property="proContact" column="proContact"/>
+		<result property="proPhone" column="proPhone"/>
+	</resultMap>
+</mapper>
