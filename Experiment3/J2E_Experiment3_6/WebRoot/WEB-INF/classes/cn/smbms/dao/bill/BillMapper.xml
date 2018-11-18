@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.smbms.dao.bill.BillMapper">
+
+	<!-- 根据用户名称查询用户列表（模糊查询） -->
+	<select id="getBillByProviderId_foreach_map" resultMap="billMapByProvider">
+		select * from smbms_bill where billCode like CONCAT('%',#{billCode},'%') and providerId in
+			<foreach collection="providerIdList" item="providerIdMap"
+					open="(" separator="," close=")">
+				#{providerIdMap}
+			</foreach>
+	</select>
+	
+	<resultMap type="Bill" id="billMapByProvider">
+		<result property="id" column="id"/>
+		<result property="billCode" column="billCode"/>
+		<result property="billName" column="billName"/>
+	</resultMap>
+	
+</mapper>

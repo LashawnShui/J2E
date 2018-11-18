@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.smbms.dao.provider.ProviderMapper">
+
+	<!-- 修改用户 -->
+	<update id="modify" parameterType="Provider">
+		update smbms_provider
+			<trim prefix="set" suffixOverrides="," suffix="where id = #{id}">
+				<if test="proCode != null">proCode=#{proCode},</if>
+				<if test="proName != null">proName=#{proName},</if>
+				<if test="proDesc != null">proDesc=#{proDesc},</if>
+				<if test="proContact != null">proContact=#{proContact},</if>
+				<if test="proPhone != null">proPhone=#{proPhone},</if>
+				<if test="proAddress != null">proAddress=#{proAddress},</if>
+				<if test="proFax != null">proFax=#{proFax},</if>
+				<if test="modifyDate != null">modifyDate=#{modifyDate},</if>
+				<if test="modifyBy != null">modifyBy=#{modifyBy},</if>
+			</trim>
+	</update>
+</mapper>
