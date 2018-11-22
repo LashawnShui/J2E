@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+	
+	<bean id="user" class="entity.User">
+		<property name="username">
+			<value>张三</value>
+		</property>
+		<property name="age">
+			<value>23</value>
+		</property>
+		<property name="hobbyList">
+			<list>
+				<value>足球</value>
+				<value>篮球</value>
+			</list>
+		</property>
+		<property name="hobbySet">
+			<set>
+				<value>足球</value>
+				<value>篮球</value>
+			</set>
+		</property>
+		<property name="hobbyMap">
+			<map>
+				<entry>
+					<key><value>football</value></key>
+					<value>足球</value>
+				</entry>
+				<entry>
+					<key><value>basketball</value></key>
+					<value>篮球</value>
+				</entry>
+			</map>
+		</property>
+		<property name="hobbyProperties">
+			<props>
+				<prop key="football">足球</prop>
+				<prop key="basketball">篮球</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="product" class="entity.Product">
+		<property name="productName">
+			<value>高露洁牙膏</value>
+		</property>
+		<property name="brand">
+			<value>P&amp;G</value>
+		</property>
+	</bean>
+	
+</beans>
