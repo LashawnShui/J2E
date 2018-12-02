@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.smbms.dao.bill.BillMapper">
+	<select id="getBillListByMap" resultMap="billList" parameterType="Map">
+		select b.*,p.proName from smbms_bill b,smbms_provider p
+			where b.productName like CONCAT('%',#{productName},'%')
+				and b.providerId=#{providerId}
+				and b.isPayment=#{isPayment}
+				and b.providerId=p.id
+	</select>
+	
+	<resultMap type="Bill" id="billList">
+		<result property="providerName" column="proName"/>
+	</resultMap>
+</mapper>
